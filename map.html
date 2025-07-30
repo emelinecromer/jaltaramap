@@ -78,6 +78,17 @@
 		
 		const marker = L.marker([pit.lat, pit.lon]);
 		marker.bindPopup(popupContent);
+
+		// Show popup on mouseover
+		marker.on('mouseover', function() {
+		this.openPopup();
+		});
+		
+		// Hide popup on mouseout
+		marker.on('mouseout', function() {
+		this.closePopup();
+		});
+		
 		markers.addLayer(marker);
 	});
 
