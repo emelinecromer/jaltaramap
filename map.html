@@ -38,14 +38,29 @@
 
 	const tiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 		  attribution: 'Tiles &copy; Esri',
-		  maxZoom: 19
+		  maxZoom: 16
 	}).addTo(map);
 
+	const data = [
+		{ lat: 19.3994483, lon: 76.2048550, name: "test pit 1" },
+		{ lat: 19.6804890, lon: 76.3649070, name: "test pit 2" }
+	];
+
+	data.forEach(function(pit) {
+		const popupContent = `${pit.name}`;
+		
+		const marker = L.marker([pit.lat, pit.lon]);
+		marker.bindPopup(popupContent);
+		marker.addTo(map);
+	});
+
+	const popup = L.popup();
+
 	function onMapClick(e) {
-		popup
-			.setLatLng(e.latlng)
-			.setContent(`You clicked the map at ${e.latlng.toString()}`)
-			.openOn(map);
+		// popup
+		// 	.setLatLng(e.latlng)
+		// 	.setContent(`You clicked the map at ${e.latlng.toString()}`)
+		// 	.openOn(map);
 	}
 
 	map.on('click', onMapClick);
