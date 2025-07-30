@@ -52,8 +52,9 @@
 	const map = L.map('map', {
   	center: [37.7749, -122.4194],
   	zoom: 15,
-	  maxBounds: bounds,
-	  maxBoundsViscosity: 1.0
+	minZoom: 2,
+	maxBounds: bounds,
+	maxBoundsViscosity: 1.0
 	});
 
 	const tiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
