@@ -67,24 +67,21 @@
 		{ lat: 19.6804890, lon: 76.3649070, name: "test pit 2" }
 	];
 
+	const markers = L.markerClusterGroup({
+	  maxClusterRadius: 80, // cluster markers within 80 pixels of each other (default 80)
+	  spiderfyOnMaxZoom: true, // when at max zoom, clicking a cluster expands markers around it
+	  showCoverageOnHover: true // highlight cluster area on mouseover
+	});
+
 	data.forEach(function(pit) {
 		const popupContent = `${pit.name}`;
 		
 		const marker = L.marker([pit.lat, pit.lon]);
 		marker.bindPopup(popupContent);
-		marker.addTo(map);
+		markers.addLayer(marker);
 	});
 
-	const popup = L.popup();
-
-	function onMapClick(e) {
-		// popup
-		// 	.setLatLng(e.latlng)
-		// 	.setContent(`You clicked the map at ${e.latlng.toString()}`)
-		// 	.openOn(map);
-	}
-
-	map.on('click', onMapClick);
+	map.addLayer(markers);
 
 </script>
 
