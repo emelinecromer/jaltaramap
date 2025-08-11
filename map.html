@@ -70,16 +70,25 @@
 	  maxZoom: 19
 	}).addTo(map);
 
-	const data = [
-		{ lat: 19.3994483, lon: 76.2048550, name: "test pit 1" },
-		{ lat: 19.6804890, lon: 76.3649070, name: "test pit 2" }
-	];
-
 	const markers = L.markerClusterGroup({
 	  maxClusterRadius: 80, // cluster markers within 80 pixels of each other (default 80)
 	  spiderfyOnMaxZoom: true, // when at max zoom, clicking a cluster expands markers around it
 	  showCoverageOnHover: true // highlight cluster area on mouseover
 	});
+
+	fetch('https://drive.google.com/uc?export=download&id=1zbilp8c3oEJe68q3KA3BMOJI7w_xjW_z') // get file
+	.then(res => res.text()) // read as plain text
+	.then(text => {
+		const lines = text.trim().split('\n'); // split into lines
+
+		const header = lines.shift().split('\t'); // gives column names and splits into columns
+
+		
+	
+	const data = [
+		{ lat: 19.3994483, lon: 76.2048550, name: "test pit 1" },
+		{ lat: 19.6804890, lon: 76.3649070, name: "test pit 2" }
+	];
 
 	data.forEach(function(pit) {
 		const popupContent = `${pit.name}`;
